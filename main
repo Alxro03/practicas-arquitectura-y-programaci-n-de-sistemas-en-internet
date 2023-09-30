@@ -1,0 +1,145 @@
+export function add(a: number, b: number): number {
+  return a + b;
+}
+const rest = (a: number, b: number) => a-b;
+
+type survivors ={
+  origen?: string
+  nombre?: string
+  altura:number
+  edad:number
+  peso:number
+  género:string
+  infectado: boolean
+}
+
+const scott :survivors={
+  origen: "Yemen",
+  nombre: "Scott",
+  altura: 1.80,
+  edad: 36,
+  peso: 70,
+  género: "hombre",
+  infectado: true
+
+}
+const Kirk :survivors={
+  origen: "Yemen",
+  nombre: "Kirk",
+  altura: 1.80,
+  edad: 36,
+  peso: 70,
+  género: "hombre",
+  infectado: false
+}
+const surv1 :survivors={
+  altura: 1.80,
+  edad: 36,
+  peso: 70,
+  género: "mujer",
+  infectado: false
+}
+const surv2 :survivors={
+  altura: 1.80,
+  edad: 36,
+  peso: 70,
+  género: "mujer",
+  infectado: false
+}
+const surv3 :survivors={
+  altura: 1.80,
+  edad: 36,
+  peso: 70,
+  género: "mujer",
+  infectado: true
+}
+
+ interface nave {
+  peso: number
+  dimensiones: number[]
+  capacidad: number
+  pasajeros: survivors[]
+}
+
+let datosenterprise: nave ={
+  peso : 100,
+  dimensiones : [289, 127],
+  capacidad: 0.73,
+  pasajeros: [ scott, Kirk, surv1, surv2, surv3 ],
+} 
+
+const knowname = datosenterprise.pasajeros.filter((e) => e.nombre);
+
+//console.log(knowname);
+
+const inf = datosenterprise.pasajeros.filter((e)=> !e.infectado);
+//inf.forEach((e)=>console.log(e));
+
+
+const atleastoneinfected = datosenterprise.pasajeros.some((e)=> e.infectado);
+//console.log("hay al menos un infectado ", atleastoneinfected);
+
+const allinfected = datosenterprise.pasajeros.every((e)=> e.infectado);
+//console.log("estan todos infectados: ", allinfected);
+
+const firstinfected = datosenterprise.pasajeros.find((e)=> e.infectado);
+//console.log(" primer infectado: ", firstinfected);
+
+interface años{
+  listado: año[]
+}
+
+interface año{
+  year: number,
+  comprensible: boolean
+}
+const año1: año ={
+  year: 1231, 
+  comprensible: true
+}
+const año2: año ={
+  year: 3213, 
+  comprensible: false
+}
+const año3: año ={
+  year: 3333, 
+  comprensible: true
+}
+
+let listadoaños: años = {
+  listado: [año1, año2, año3],
+}
+
+const filtroseñal = listadoaños.listado.filter((e) => e.comprensible);
+//console.log(filtroseñal);
+
+const fechasexactas = filtroseñal.map((e)=>({
+  year: e.year,
+  month: Math.floor(Math.random() * (12 - 1 + 1)) + 1,
+  day: Math.floor(Math.random() * (31 - 1 + 1)) + 1,
+  hour: Math.floor(Math.random() * (23 - 0 + 1)) + 0,
+  minute: Math.floor(Math.random() * (59 - 0 + 1)) + 0,
+  second: Math.floor(Math.random() * (59 - 0 + 1)) + 0,
+  
+}))
+//console.log(fechasexactas);
+
+
+
+const listimperfect1: number[] = [1,10,20];
+const listimperfect2: number[] = [2,60,50];
+const listimperfect3: number[] = [3,80,40];
+
+const listrecibida: number[][] = [listimperfect1,listimperfect2,listimperfect3];
+
+const masde20 = listrecibida.filter((e)=> e[1]>20);
+
+const numdetribbles = masde20.reduce((acc,e)=> acc + e[2],0);
+
+
+console.log(numdetribbles);
+const señallisa = listrecibida.flat();
+console.log(señallisa);
+
+const señaldepeligro = listrecibida.flatMap((e)=> e[2]> e[1]*0.5);
+console.log("turboconductos en peligro: " + señaldepeligro);
